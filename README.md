@@ -1,9 +1,13 @@
 # UPY-PROGRAMMING-MELANY-VILCHIS_BAZALDUA-Q2-2026
 Git/GitHub Repository
 
-This repository contains Python-based implementations, developed as part of Unit 2 for the Programming course (Q2-2026). The objective of this assignment is to establish a professional development environment using Git for version control and GitHub for remote collaboration.
+This repository contains Python-based implementations, developed as part of Unit 2 for the Programming course (Q2-2026). 
+
+The objective of this assignment is to establish a professional development environment using Git for version control and GitHub for remote collaboration.
 Project Description.
+
 Dígito verificador
+
 Desarrolle un programa que calcule el dígito verificador de un rol UTFSM.
 Para calcular el dígito verificador, se deben realizar los siguientes pasos:
 Obtener el rol sin guión ni dígito verificador.
@@ -17,7 +21,9 @@ Invertir el número. (e.g: de 201012341 a 143210102).
     Con el resultado obtenido en el paso anterior, debemos restarlo de 11:  
     11 - 8 = 3  
 Finalmente, el dígito verificador será el obtenido en la resta: 201012341-3.
+
 Environment & Tools
+
     Language: Python 3.x
     Version Control: Git
     Hosting Platform: GitHub
