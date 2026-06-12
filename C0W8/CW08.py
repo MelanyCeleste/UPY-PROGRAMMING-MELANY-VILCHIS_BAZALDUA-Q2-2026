@@ -32,7 +32,7 @@ if method == "TRAP":
     for i in range (variable, n):
         xi=a+i*h
         f_xi= f_x.replace("x",str(xi))
-        area += h/2 * 2 * eval(f_0)
+        area += h/2 * 2 * eval(f_xi)
     f_xn= f_x.replace("x",str(b))
     area += (h/2) * eval(f_xn) 
 else:
