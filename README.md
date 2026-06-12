@@ -6,51 +6,49 @@ This repository contains Python-based implementations, developed as part of Unit
 The objective of this assignment is to establish a professional development environment using Git for version control and GitHub for remote collaboration.
 Project Description.
 
-# Calculadora de integración numérica
+# Numerical Integration Calculator
 
-Su objetivo principal es aproximar el área bajo la curva de una función matemática f(x) en un intervalo definido [a, b].
+Its main objective is to approximate the area under the curve of a mathematical function f(x) within a defined interval [a, b].
 
-Dado que las computadoras no integran de forma analítica (como se haría en papel con reglas de integración), el programa utiliza aproximaciones geométricas. Para lograrlo, divide el área total en 1000 pequeños segmentos (n = 1000) y suma el área de cada uno de ellos.
+Since computers do not integrate analytically (as one would do on paper using integration rules), the program uses geometric approximations. To achieve this, it divides the total area into 1000 small segments (n = 1000) and sums the area of each one.
 
-# 1. Preparación y Captura de Datos (Inputs)
+# 1. Preparation and Data Capture (Inputs)
+The code prompts the user for the integration limits (a and b), the function, and the desired method.
 
--El código solicita al usuario los límites de integración (a y b), la función y el método deseado.
+Highlight: A very useful validation was implemented to process the constant pi. If the user types "pi", the code uses the .replace() function to substitute the text with the exact numerical value from the math library.
 
--Acierto destacado: Se implementó una validación muy útil para procesar la constante pi. Si el usuario escribe "pi", el código utiliza la función .replace() para sustituir el texto por el valor numérico exacto proveniente de la librería math.
+Subsequently, h is calculated, which represents the "width" or base of each rectangle, using the formula h = (b - a) / n.
 
--Posteriormente, se calcula h, que representa el "ancho" o la base de cada rectangulo, utilizando la fórmula h = (b - a) / n.
+# 2. Optimization of the Rectangular Methods (LRM, RRM, MRM)
+Instead of programming three independent for loops for each rectangular method, the development unified the logic through the use of the shift and constant variables.
 
-# 2. Optimización de los Métodos Rectangulares (LRM, RRM, MRM)
+-LRM (Left): The loop starts without alterations (shift = 0), evaluating the height of the rectangle at the left edge of the subinterval.
 
-En lugar de programar tres ciclos for independientes para cada método rectangular, el desarrollo unificó la lógica mediante el uso de las variables shift y constant.
+-RRM (Right): The loop shifts one space (shift = 1), evaluating the height starting from the next point.
 
-LRM (Izquierda): El ciclo inicia sin alteraciones (shift = 0), evaluando la altura del rectángulo en el borde izquierdo del subintervalo.
+-MRM (Midpoint): The value of constant (h/2) is added to the position variable. This moves the evaluation point exactly to the center of the subinterval before calculating its height.
 
-RRM (Derecha): El ciclo se desplaza un espacio (shift = 1), evaluando la altura a partir del siguiente punto.
+# 3. Trapezoid Method Implementation (TRAP)
+For this method, the logic was handled separately because its formula differs from the previous ones. Instead of summing flat rectangular areas, this method requires averaging the sides:
 
-MRM (Punto Medio): Se suma el valor de constant (h/2) a la variable de posición. Esto traslada el punto de evaluación exactamente al centro del subintervalo antes de calcular su altura.
+First, the code calculates and evaluates the endpoints of the curve in isolation.
 
-# 3. Implementación del Método del Trapecio (TRAP)
+Then, it uses a for loop to sum double all the intermediate heights, respecting the mathematical structure of the trapezoid method.
 
-Para este método, la lógica se manejó por separado debido a que su fórmula difiere de las anteriores. En lugar de sumar áreas rectangulares planas, este método requiere promediar los lados:
+# Environment and Tools
 
-Primero, el código calcula y evalúa los extremos de la curva de manera aislada.
+Language: Python 3.x
 
-Luego, utiliza un ciclo for para sumar el doble de todas las alturas intermedias, respetando la estructura matemática del método del trapecio.
+Version Control: Git
 
-# Ambiente y herramientas
+Hosting Platform: GitHub
 
-    Idioma: Python 3.x
-    Control de versiones: Git
-    Plataforma de alojamiento: GitHub
-
-# Como ejecutar el programa
-
-Asegúrese de tener Python instalado en su sistema.
-Clone este repositorio o descargue el archivo fuente:
+# How to run the program
+Ensure you have Python installed on your system.
+Clone this repository or download the source file:
 
     https://github.com/MelanyCeleste/UPY-PROGRAMMING-MELANY-VILCHIS_BAZALDUA-Q2-2026/blob/7a92a4d6bbb8f4f7e80f83011d28b25ca0d9ad54/C0W8/CW08.py
 
-# Declaración de uso de IA
+# AI Use Declaration
 
-Se utilizaron herramientas de IA exclusivamente para ayudar en la redacción de este archivo README y explicar el proceso de desarrollo. No se utilizó IA en la programación, lógica del código ni en la configuración del control de versiones.
+AI tools were used exclusively to assist in drafting this README file to explain the code development process. No AI was used during the actual programming, logic design, or version control setup of this assignment.
