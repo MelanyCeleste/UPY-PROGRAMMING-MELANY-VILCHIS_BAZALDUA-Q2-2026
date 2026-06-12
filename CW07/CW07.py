@@ -12,3 +12,13 @@ for i in range(len(rol_invertido)):
     digito = int(rol_invertido[i])
     multiplicador = multiplicadores[i % len(multiplicadores)]
     suma += digito * multiplicador
+#Calcular el digito verificador usando el resultado de la suma
+resto = suma % 11
+if resto == 0:
+    digito_verificador = '0'
+elif resto == 1:
+    digito_verificador = 'K'
+else:
+    digito_verificador = str(11 - resto)
+#Mostrar el resultado al usuario
+print(f"El digito verificador es: {digito_verificador}")
