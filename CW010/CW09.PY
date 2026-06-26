@@ -1,40 +1,40 @@
 users = {
-    'jperez':	{
+    'jperez':   {
         'password': '1234',
         'rol': 'student',
         'name': 'Juan Pérez'
     },
-    'dromo':	{
+    'dromo':    {
         'password': '1234',
         'rol': 'student',
         'name': 'Daniela Romo'
     },
-    'mjuarez':	{
+    'mjuarez':  {
         'password': '1234',
         'rol': 'student',
         'name': 'Mauricio Juárez'
     },
-    'mlopez':	{
+    'mlopez':   {
         'password': '1234',
         'rol': 'student',
         'name': 'María López'
     },
-    'euc':	{
+    'euc':  {
         'password': '1234',
         'rol': 'student',
         'name': 'Ernesto Uc'
     },
-    'cbalam':	{
+    'cbalam':   {
         'password': '1234',
         'rol': 'student',
         'name': 'Carlos Balam'
     },
-    'jpedrozo':	{
+    'jpedrozo': {
         'password': '1234',
-        'rol': 'professor',
+        'rol': 'teacher',  # Corregido: antes decía 'professor'
         'name': 'Jorge Pedrozo'
     },
-    'dgamboa':	{
+    'dgamboa':  {
         'password': '1234',
         'rol': 'coordinator',
         'name': 'Didier Gamboa'
@@ -51,7 +51,8 @@ subjects = (
     "Socio-Emotional Skills and Conflict Management"
 )
 
-notes = {
+# Cambiado el nombre de 'notes' a 'grades' para unificar con el resto del código
+grades = {
     'jperez': {
         'Discrete Mathematics': 8.5,
         'Programming': 9.2,
@@ -104,7 +105,8 @@ notes = {
         'Differential Calculus': 6.6,
         'Probability and Statistics': 8.9,
         'Computer and Server Architecture': 8.7,
-        'Socio-Emotional Skills and Conflict Management': 9.2},
+        'Socio-Emotional Skills and Conflict Management': 9.2
+    }
 }
 
 while True:
@@ -112,20 +114,17 @@ while True:
     password = input("Enter your password: ")
     
     if username in users and password == users[username]["password"]:
-        break
-    
-    rol = users[username]["rol"]
-    name = users[username]['name']
+        rol = users[username]["rol"]
+        name = users[username]['name']
 
         if rol == 'student':
-        
-        print(f"Welcome {name} ({rol})")
-        print(f"Grades of {name}")
-        
-        approved = set()
-    
+            print(f"\nWelcome {name} ({rol})")
+            print(f"Grades of {name}")
+            
+            approved = set()
+            
             for subject in subjects:
-                grade = notes[username][subject]
+                grade = grades[username][subject]
                 print(f"{subject}: {grade}")
                 
                 if grade >= 8.0:
@@ -133,53 +132,59 @@ while True:
                     
             pending = set(subjects) - approved
             
-            print(f"Approved subject: {approved}")
-            print(f"Pending subject: {pending}")
+            print(f"\nApproved subjects: {approved}")
+            print(f"Pending subjects: {pending}")
 
         elif rol == "teacher":
-            print("Rol:", users[username]["rol"])
+            print(f"\nRol: {rol}")
             print("Students:")
             for user in grades:
-                print( users[user]["name"])
-                print()
-            print("Subjects:")
+                print(users[user]["name"])
+            
+            print("\nSubjects:")
             for subject in subjects:
                 print("-", subject)
-            change = input("Do you want to change a student's grade? (yes/no)")
-            while change == "yes":
-                student = input("Student: ")
-                subject = input("subject: ")
+                
+            change = input("\nDo you want to change a student's grade? (yes/no): ")
+            while change.lower() == "yes":
+                # Se pide el username para poder buscarlo en el diccionario
+                student = input("Student (username): ")
+                subject = input("Subject: ")
+                
                 if student in grades and subject in subjects:
                     new_grade = float(input("Grade New: "))
-                    confirm = input("Are you sure (yes/no):  ")
-                    if confirm == "yes":
+                    confirm = input("Are you sure (yes/no): ")
+                    
+                    if confirm.lower() == "yes":
                         grades[student][subject] = new_grade
-                        print("Updated ratings of", users[student]["name"])
-                        for subject in subjects:
-                            print(subject, grades[student][subject])
+                        print("\nUpdated ratings of", users[student]["name"])
+                        for subj in subjects:
+                            print(f"{subj}: {grades[student][subj]}")
                 else:
-                    print("Student don't exists")
-                change = input("Do you want to change a student's grade? (yes/no)")
+                    print("Student or subject doesn't exist.")
+                    
+                change = input("\nDo you want to change a student's grade? (yes/no): ")
 
         elif rol == "coordinator":
-
-            print("Teachers:")
+            print("\nTeachers:")
             for user, data in users.items():
                 if data["rol"] == "teacher":
                     print(data["name"])
                     
-            print("-" * 60)
-            print(f"{'Student':20}|{'Discrete Mathematics':12}|{'Programming':12}|{'English II':8}")
-            print("-" * 60)
+            print("-" * 65)
+            print(f"{'Student':20}|{'Discrete Mathematics':22}|{'Programming':12}|{'English II':10}")
+            print("-" * 65)
             
-            for student, notes in grades.items():
+            for student, student_grades in grades.items():
                 print(
                     f"{users[student]['name']:20}|"
-                    f"{notes['Discrete Mathematics']:12}|"
-                    f"{notes['Programming']:12}|"
-                    f"{notes['English II']:8}"
-                    )
-            
-
-        else:
-            print("User/password don't exist")
+                    f"{student_grades['Discrete Mathematics']:<22}|"
+                    f"{student_grades['Programming']:<12}|"
+                    f"{student_grades['English II']:<10}"
+                )
+                
+        # Sale del ciclo `while` después de ejecutar exitosamente el menú
+        break
+        
+    else:
+        print("User/password don't exist. Please try again.\n")
