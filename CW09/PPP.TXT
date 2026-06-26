@@ -1,0 +1,35 @@
+
+    #INPUT
+    Obtener el verbo del usuario
+
+    #PROCESS
+    #Definir la lista de pronombres
+    #Definir pronombres Como Arreglo [6]
+    pronombres <- ["yo", "tu", "el", "nosotros", "vosotros", "ellos"]
+
+    #Buscar sus respectivas terminaciones usando un condicional
+    
+    Según final_delverbo Hacer
+        Caso "ar":
+            finaldelverbo_lista <- ["o", "as", "a", "amos", "ais", "an"]
+        Caso "er":
+            finaldelverbo_lista <- ["o", "es", "e", "emos", "eis", "en"]
+        Caso "ir":
+            finaldelverbo_lista <- ["o", "es", "e", "imos", "is", "en"]
+    Fin Según
+
+    #crear variables 
+    raiz_delverbo <- verbo[:-2]
+    final_delverbo <- verbo[-2:]
+
+    #crear variable para buscar sus respectivas terminaciones del verbo y guardarla en una lista
+    finaldelverbo_lista= terminaciones[final_delverbo]
+
+    #Iterar sobre la lista usando un ciclo Para (for)
+    
+    Para index, pronombre in enumerate(pronombres) Hacer
+    terminacion <- finaldelverbo_lista[index]
+
+    #OUTPUT    
+        Imprimir pronombre + " " + raiz_delverbo + terminacion
+    Fin Para
