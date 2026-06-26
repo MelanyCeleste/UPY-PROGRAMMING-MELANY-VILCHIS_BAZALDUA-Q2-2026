@@ -6,11 +6,9 @@ This repository contains Python-based implementations, developed as part of Unit
 The objective of this assignment is to establish a professional development environment using Git for version control and GitHub for remote collaboration.
 Project Description.
 
-# conjugator of regular verbs
+# School Management System  
 
-This program is a conjugator of regular verbs in Spanish. First, it asks the user to enter a verb in the infinitive. It then defines a list of pronouns and a dictionary that stores the corresponding endings for verbs ending in "-ar", "-er", and "-ir".
-
-The logical development consists of dividing the entered word: extract the root (omitting the last two letters) and the ending. Using this ending, search the dictionary for the list of correct suffixes. Finally, use a loop to iterate, joining and printing each pronoun on the screen along with the verb root and its respective conjugate ending.
+The goal of the program is to simulate a school system with login for three types of users: students, teachers, and coordinators. The program stores user, subject, and grade data using lists, dictionaries, and sets. First validate access using a cycle that requests username and password until you find a correct combination. Then it identifies the user's role and executes different actions: students consult their grades and approved or pending subjects; teachers can view and modify notes; and coordinators review general system information without making changes.
 
 # Environment and Tools
 
