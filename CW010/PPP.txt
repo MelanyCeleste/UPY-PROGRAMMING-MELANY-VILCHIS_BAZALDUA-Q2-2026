@@ -1,0 +1,36 @@
+START PROGRAM
+
+    DEFINE users database (dictionary)
+    DEFINE subjects list
+    DEFINE grades database (dictionary)
+
+    LOOP UNTIL valid login
+        READ username
+        READ password
+        
+        IF username AND password match in users THEN
+            SET rol = users[username].rol
+            
+            IF rol == 'student' THEN
+                PRINT welcome message
+                FOR each subject in subjects:
+                    IF grade >= 8.0 THEN add to approved list
+                    ELSE add to pending list
+                PRINT approved and pending lists
+                
+            ELSE IF rol == 'teacher' THEN
+                PRINT list of students and subjects
+                WHILE user wants to change a grade:
+                    READ student, subject, new_grade
+                    UPDATE grades database
+                
+            ELSE IF rol == 'coordinator' THEN
+                PRINT list of teachers
+                PRINT table of student grades
+            
+            BREAK LOOP
+        ELSE
+            PRINT "User/password incorrect"
+    END LOOP
+
+END PROGRAM
