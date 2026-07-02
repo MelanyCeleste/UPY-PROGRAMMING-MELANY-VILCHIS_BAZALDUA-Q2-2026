@@ -6,9 +6,9 @@ This repository contains Python-based implementations, developed as part of Unit
 The objective of this assignment is to establish a professional development environment using Git for version control and GitHub for remote collaboration.
 Project Description.
 
-# School Management System  
+# The-Mandelbrot-Set 
 
-The goal of the program is to simulate a school system with login for three types of users: students, teachers, and coordinators. The program stores user, subject, and grade data using lists, dictionaries, and sets. First validate access using a cycle that requests username and password until you find a correct combination. Then it identifies the user's role and executes different actions: students consult their grades and approved or pending subjects; teachers can view and modify notes; and coordinators review general system information without making changes.
+The program reads a text file  line by line, extracting configuration parameters (image dimensions, complex plane boundaries, and iteration boundary) using the format key=value and storing them in a dictionary. Through two nested for loops, the code traverses each coordinate of a grid (row and column). Map these two-dimensional positions to a number in the complex plane c. Subsequently, it uses a while loop to iterate the mathematical function z = z^2 + c. This cycle counts iterations and stops only if the magnitude of z exceeds 2 or if the iteration limit is reached.
 
 # Environment and Tools
 
