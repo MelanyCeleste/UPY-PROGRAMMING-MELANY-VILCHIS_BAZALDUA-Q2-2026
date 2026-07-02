@@ -1,0 +1,57 @@
+INICIO
+
+#INPUT
+
+Crear Diccionario vacío llamado 'config'
+Abrir archivo "config.txt" en modo lectura
+
+PARA CADA 'linea' en el archivo:
+    'clave', 'valor' <- Separar 'linea' por el carácter "="
+    'config'[clave] <- Convertir 'valor' a número decimal #float
+FIN PARA
+
+Cerrar archivo "config.txt"
+
+#PROCESS
+
+#Forzar a enteros las variables que representan conteos o dimensiones
+ancho <- Convertir a Entero ( config["ancho"] )
+alto <- Convertir a Entero ( config["alto"] )
+max_iter <- Convertir a Entero ( config["max_iter"] )
+
+Abrir archivo "clase.csv" en modo escritura (como 'salida')
+Escribir la línea "fila + columna + iteraciones" en 'salida'
+
+PARA 'fila' DESDE 0 HASTA (alto - 1):
+    PARA 'columna' DESDE 0 HASTA (ancho - 1):
+        
+        # Mapear las coordenadas (x,y) de la pantalla a coordenadas del plano complejo (real, imaginario)
+        real <- config["real_min"] + (columna / ancho) * (config["real_max"] - config["real_min"])
+        imag <- config["imag_min"] + (fila / alto) * (config["imag_max"] - config["imag_min"])
+        
+        c <- Crear número complejo con partes (real, imag)
+        z <- Crear número complejo (0, 0)
+        iteraciones = 0
+        
+        #Bucle de evaluación del fractal (Condición de escape)
+        MIENTRAS (Valor Absoluto de 'z' <= 2) Y ('iteraciones' < max_iter) HACER:
+            z <- (z * z) + c
+            iteraciones <- iteraciones + 1
+        FIN MIENTRAS
+        
+        
+        #Salida parcial en bucle
+        
+        Escribir los valores ('fila'+ 'columna' + 'iteraciones') separados por coma en 'salida'
+        
+    FIN PARA
+FIN PARA
+
+Cerrar archivo 'salida'
+
+
+#OUTPUT
+
+Display "DONE"
+
+FIN
