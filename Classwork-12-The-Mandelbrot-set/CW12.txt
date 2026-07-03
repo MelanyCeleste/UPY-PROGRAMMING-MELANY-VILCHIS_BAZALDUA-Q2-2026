@@ -1,0 +1,52 @@
+#INPUT 
+
+ABRIR archivo "config.txt" en modo LECTURA como archivo_config
+LEER lineas de archivo_config en lista 'lineas_config'
+CERRAR archivo_config
+
+ABRIR archivo "clase.csv" en modo LECTURA como archivo_datos
+LEER lineas de archivo_datos en lista 'datos'
+CERRAR archivo_datos
+
+
+# PROCESS
+
+DEFINIR DICCIONARIO config
+
+PARA CADA linea EN lineas_config HACER
+    SEPARAR linea POR "=" EN clave, valor
+    SI valor CONTIENE "." ENTONCES
+        config[clave] = CONVERTIR_A_DECIMAL(valor)
+    SINO
+        config[clave] = CONVERTIR_A_ENTERO(valor)
+    FIN SI
+FIN PARA
+
+alto = config["alto"]
+ancho = config["ancho"]
+max_iter = config["max_iter"]
+
+CREAR IMAGEN img CON MODO "HSV" Y DIMENSIONES (ancho, alto)
+
+ELIMINAR PRIMER ELEMENTO de 'datos' (quitar encabezados)
+
+PARA CADA dato EN datos HACER
+    SEPARAR dato POR "," EN fila, columna, iteraciones
+    CONVERTIR fila, columna, iteraciones A ENTEROS
+    
+    SI iteraciones == max_iter ENTONCES
+        brillo = 40
+    SINO
+        brillo = ENTERO( (iteraciones / max_iter) * 255 )
+    FIN SI
+    
+    ASIGNAR_PIXEL en img EN COORDENADA (columna, fila) CON COLOR (brillo, 255, 255)
+FIN PARA
+
+img_rgb = CONVERTIR_MODO_IMAGEN(img, "RGB")
+
+#OUTPUT 
+
+IMPRIMIR config
+GUARDAR img_rgb COMO "mandelbrot-clase.png"
+IMPRIMIR "DONE"
