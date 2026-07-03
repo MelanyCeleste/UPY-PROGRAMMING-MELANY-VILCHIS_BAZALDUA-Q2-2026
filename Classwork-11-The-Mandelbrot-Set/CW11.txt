@@ -1,57 +1,55 @@
-INICIO
-
 #INPUT
 
-Crear Diccionario vacío llamado 'config'
-Abrir archivo "config.txt" en modo lectura
+Create empty Dictionary called 'config'
+Open "config.txt" file in reading mode
 
-PARA CADA 'linea' en el archivo:
-    'clave', 'valor' <- Separar 'linea' por el carácter "="
-    'config'[clave] <- Convertir 'valor' a número decimal #float
-FIN PARA
+FOR EACH 'line' in the file:
+    'key', 'value' <- Separate 'line' by the character "="
+    'config'[key] <- Convert 'value' to decimal number#float
+END FOR
 
-Cerrar archivo "config.txt"
+Close "config.txt" file
 
 #PROCESS
 
-#Forzar a enteros las variables que representan conteos o dimensiones
-ancho <- Convertir a Entero ( config["ancho"] )
-alto <- Convertir a Entero ( config["alto"] )
-max_iter <- Convertir a Entero ( config["max_iter"] )
+#Forzar to integers the variables that represent counts or dimensions
+width <- Convert to Integer (config["width"] )
+high <- Convert to Integer (config["high"] )
+max_iter <- Convert to Integer (config["max_iter"] )
 
-Abrir archivo "clase.csv" en modo escritura (como 'salida')
-Escribir la línea "fila + columna + iteraciones" en 'salida'
+Open "class.csv" file in write mode (as 'output')
+Write the line "row + column + iterations" in 'output'
 
-PARA 'fila' DESDE 0 HASTA (alto - 1):
-    PARA 'columna' DESDE 0 HASTA (ancho - 1):
+FOR 'row' FROM 0 TO (high - 1):
+    FOR 'column' FROM 0 TO (width - 1):
         
-        # Mapear las coordenadas (x,y) de la pantalla a coordenadas del plano complejo (real, imaginario)
-        real <- config["real_min"] + (columna / ancho) * (config["real_max"] - config["real_min"])
-        imag <- config["imag_min"] + (fila / alto) * (config["imag_max"] - config["imag_min"])
+        # Map the coordinates (x,y) of the screen to coordinates of the complex plane (real, imaginary)
+        real <- config["real_min"] + (column /width) * (config["real_max"] - config["real_min"])
+        imag <- config["imag_min"] + (row /height) * (config["imag_max"] - config["imag_min"])
         
-        c <- Crear número complejo con partes (real, imag)
-        z <- Crear número complejo (0, 0)
-        iteraciones = 0
+        c <- Create complex number with parts (real, imag)
+        z <- Create complex number (0, 0)
+        iterations = 0
         
-        #Bucle de evaluación del fractal (Condición de escape)
-        MIENTRAS (Valor Absoluto de 'z' <= 2) Y ('iteraciones' < max_iter) HACER:
+        #Bucle fractal evaluation (Exhaust condition)
+        WHILE (Absolute Value of 'z' <= 2) Y ('iterations' < max_iter) DO:
             z <- (z * z) + c
-            iteraciones <- iteraciones + 1
-        FIN MIENTRAS
+            iterations <- iterations + 1
+        END WHILE
         
         
-        #Salida parcial en bucle
+        #Salida partial loop
         
-        Escribir los valores ('fila'+ 'columna' + 'iteraciones') separados por coma en 'salida'
+        Write the values ('row'+ 'column' + 'iterations') separated by commas in 'output'
         
-    FIN PARA
-FIN PARA
+    END FOR
+END FOR
 
-Cerrar archivo 'salida'
+Close 'output' file
 
 
 #OUTPUT
 
 Display "DONE"
 
-FIN
+END
