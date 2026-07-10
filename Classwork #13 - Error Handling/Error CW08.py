@@ -79,9 +79,7 @@ except (FuncionVaciaError, FuncionSinXError, FuncionInvalidaError) as e:
 if valido:
     try:
         if a >= b:
-            raise IntervaloInvertidoError(
-                "El límite inferior debe ser menor que el límite superior"
-            )
+            raise IntervaloInvertidoError("El límite inferior debe ser menor que el límite superior")
     except IntervaloInvertidoError as e:
         print(e)
         valido = False
@@ -89,9 +87,7 @@ if valido:
 if valido:
     try:
         if method not in ("LRM", "RRM", "MPM", "TM"):
-            raise MetodoInvalidoError(
-                "El método de integración no es válido. Usa LRM, RRM, MPM o TM"
-            )
+            raise MetodoInvalidoError("El método de integración no es válido. Usa LRM, RRM, MPM o TM")
     except MetodoInvalidoError as e:
         print(e)
         valido = False
@@ -126,9 +122,7 @@ if valido:
                     height = f_x.replace("x", str(xi + constant))
                     area += h * eval(height)
         except ZeroDivisionError:
-            raise FuncionNoDefinidaError(
-                "La función no está definida en algún punto del intervalo"
-            )
+            raise FuncionNoDefinidaError("La función no está definida en algún punto del intervalo")
     except FuncionNoDefinidaError as e:
         print(e)
         valido = False
