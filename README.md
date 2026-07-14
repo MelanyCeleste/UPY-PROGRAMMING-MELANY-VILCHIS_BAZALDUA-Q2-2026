@@ -6,9 +6,15 @@ This repository contains Python-based implementations, developed as part of Unit
 The objective of this assignment is to establish a professional development environment using Git for version control and GitHub for remote collaboration.
 Project Description.
 
-# The-Mandelbrot-Set 
+# Error Handling
 
-The program reads a text file  line by line, extracting configuration parameters (image dimensions, complex plane boundaries, and iteration boundary) using the format key=value and storing them in a dictionary. Through two nested for loops, the code traverses each coordinate of a grid (row and column). Map these two-dimensional positions to a number in the complex plane c. Subsequently, it uses a while loop to iterate the mathematical function z = z^2 + c. This cycle counts iterations and stops only if the magnitude of z exceeds 2 or if the iteration limit is reached.
+In this project, an error validation was carried out, where a possible error or failure is searched in the code execution process, in this way when it "fails", the origin of the error will be known, because it had already been identified and classified as a possible code failure, guaranteeing stability and continuity.
+
+try: Frames the "vulnerable" block of code that could fail, such as numerical data requests or dictionary searches.
+
+except: Acts as a safety net. If a specific anomaly occurs within the try (such as ValueError or KeyError), this block captures the exception, prevents the program from crashing, and executes a corrective action, such as displaying a friendly message or clearing the entry.
+
+raise: Allows you to intentionally force or trigger a custom exception when a business rule is detected to have been broken (for example, if the entered role does not exist in the records).
 
 # Environment and Tools
 
