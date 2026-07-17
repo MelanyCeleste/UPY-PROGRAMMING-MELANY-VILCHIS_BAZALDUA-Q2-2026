@@ -1,0 +1,123 @@
+FUNCIÓN bubble_sort(numeros)
+    n ← longitud(numeros)
+
+    PARA sweep DESDE 0 HASTA n-1 HACER
+        PARA pair DESDE 0 HASTA (n - 1 - sweep - 1) HACER
+            SI numeros[pair] > numeros[pair + 1] ENTONCES
+                INTERCAMBIAR numeros[pair] CON numeros[pair + 1]
+            FIN SI
+        FIN PARA
+    FIN PARA
+FIN FUNCIÓN
+
+FUNCIÓN insertion_sort(numeros)
+    n ← longitud(numeros)
+
+    PARA i DESDE 1 HASTA n-1 HACER
+        j ← i
+        MIENTRAS j > 0 Y numeros[j-1] > numeros[j] HACER
+            INTERCAMBIAR numeros[j-1] CON numeros[j]
+            j ← j - 1
+        FIN MIENTRAS
+    FIN PARA
+
+    RETORNAR numeros
+FIN FUNCIÓN
+
+FUNCIÓN selection_sort(numeros)
+    n ← longitud(numeros)
+
+    PARA i DESDE 0 HASTA n-1 HACER
+        min_index ← i
+        PARA j DESDE i+1 HASTA n-1 HACER
+            SI numeros[j] < numeros[min_index] ENTONCES
+                min_index ← j
+            FIN SI
+        FIN PARA
+        INTERCAMBIAR numeros[i] CON numeros[min_index]
+    FIN PARA
+FIN FUNCIÓN
+
+FUNCIÓN draw_bars(numeros, seleccionados = vacío)
+    LIMPIAR pantalla
+    n ← longitud(numeros)
+    ancho_barra ← 10.0 / n
+
+    PARA CADA (i, numero) EN numeros HACER
+        x ← i * ancho_barra + ancho_barra / 2
+        SI i ESTÁ EN seleccionados ENTONCES
+            color ← ROJO
+        SINO
+            color ← AZUL
+        FIN SI
+        ESTABLECER color de dibujo ← color
+        DIBUJAR rectángulo relleno EN (x - ancho_barra/2, 0) CON ancho = ancho_barra*0.9, alto = numero
+    FIN PARA
+
+    MOSTRAR pantalla (esperar 100 ms)
+FIN FUNCIÓN
+
+FUNCIÓN bubble_sort_animated(numeros)
+    CONFIGURAR escala X de (-0.1, 10)
+    CONFIGURAR escala Y de (-0.5, máximo(numeros) + 1)
+    n ← longitud(numeros)
+
+    PARA sweep DESDE 0 HASTA n-1 HACER
+        swapped ← FALSO
+        PARA pair DESDE 0 HASTA (n - 1 - sweep - 1) HACER
+            DIBUJAR barras(numeros, seleccionados = (pair, pair+1))
+            SI numeros[pair] > numeros[pair + 1] ENTONCES
+                INTERCAMBIAR numeros[pair] CON numeros[pair + 1]
+                swapped ← VERDADERO
+            FIN SI
+            DIBUJAR barras(numeros, seleccionados = (pair, pair+1))
+        FIN PARA
+
+        SI NO swapped ENTONCES
+            ROMPER CICLO
+        FIN SI
+    FIN PARA
+
+    DIBUJAR barras(numeros)
+    MOSTRAR pantalla
+FIN FUNCIÓN
+
+FUNCIÓN insertion_sort_animated(numeros)
+    CONFIGURAR escala X de (-0.1, 10)
+    CONFIGURAR escala Y de (-0.5, máximo(numeros) + 1)
+    n ← longitud(numeros)
+
+    PARA i DESDE 1 HASTA n-1 HACER
+        j ← i
+        DIBUJAR barras(numeros, seleccionados = (j,))
+        MIENTRAS j > 0 Y numeros[j-1] > numeros[j] HACER
+            INTERCAMBIAR numeros[j-1] CON numeros[j]
+            j ← j - 1
+            DIBUJAR barras(numeros, seleccionados = (j, j+1))
+        FIN MIENTRAS
+    FIN PARA
+
+    DIBUJAR barras(numeros)
+    MOSTRAR pantalla
+FIN FUNCIÓN
+
+FUNCIÓN selection_sort_animated(numeros)
+    CONFIGURAR escala X de (-0.1, 10)
+    CONFIGURAR escala Y de (-0.5, máximo(numeros) + 1)
+    n ← longitud(numeros)
+
+    PARA i DESDE 0 HASTA n-1 HACER
+        min_index ← i
+        PARA j DESDE i+1 HASTA n-1 HACER
+            DIBUJAR barras(numeros, seleccionados = (i, min_index, j))
+            SI numeros[j] < numeros[min_index] ENTONCES
+                min_index ← j
+            FIN SI
+        FIN PARA
+        INTERCAMBIAR numeros[i] CON numeros[min_index]
+        DIBUJAR barras(numeros, seleccionados = (i,))
+    FIN PARA
+
+    DIBUJAR barras(numeros)
+    MOSTRAR pantalla
+FIN FUNCIÓN
