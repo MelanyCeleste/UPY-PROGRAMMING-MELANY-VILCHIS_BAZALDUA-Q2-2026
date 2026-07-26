@@ -1,0 +1,134 @@
+#INICIO recursiva(n)
+  ENTRADA: n
+
+  #PROCESO
+    SI n no es entero ENTONCES
+      MOSTRAR ERROR "n debe ser un entero"
+    SI n < 0 ENTONCES
+      MOSTRAR ERROR "n no puede ser negativo"
+    SI n == 0 ENTONCES
+      resultado = "Done!"
+    SINO
+      MOSTRAR n
+      resultado = recursiva(n - 1)
+
+  
+FIN
+
+#INICIO fibonacci(n)
+  ENTRADA: n
+
+  #PROCESO
+    SI n no es entero ENTONCES
+      MOSTRAR ERROR "n debe ser un entero"
+    SI n < 0 ENTONCES
+      MOSTRAR ERROR "n no puede ser negativo"
+    SI n == 0 O n == 1 ENTONCES
+      resultado = n
+    SINO
+      resultado = fibonacci(n - 1) + fibonacci(n - 2)
+FIN
+
+#INICIO factorial(n)
+  ENTRADA: n
+
+  #PROCESO
+    SI n no es entero ENTONCES
+      MOSTRAR ERROR "n debe ser un entero"
+    SI n < 0 ENTONCES
+      MOSTRAR ERROR "n no puede ser negativo"
+    SI n == 0 O n == 1 ENTONCES
+      resultado = 1
+    SINO
+      resultado = factorial(n - 1) * n
+FIN
+
+
+#INICIO multiplicacion_recursiva(n, m)
+  ENTRADA: n, m
+
+  #PROCESO
+    SI m no es entero ENTONCES
+      MOSTRAR ERROR "m debe ser un entero"
+    SI m < 0 ENTONCES
+      MOSTRAR ERROR "m no puede ser negativo"
+    SI m == 0 ENTONCES
+      resultado = 0
+    SINO
+      resultado = multiplicacion_recursiva(n, m - 1) + n  
+FIN
+
+#INICIO division_entera_recursiva(dividendo, divisor)
+  ENTRADA: dividendo, divisor
+
+  #PROCESO
+    SI dividendo no es entero O divisor no es entero ENTONCES
+      MOSTRAR ERROR "dividendo y divisor deben ser enteros"
+    SI divisor == 0 ENTONCES
+      MOSTRAR ERROR "El divisor no puede ser 0"
+    SI dividendo < 0 ENTONCES
+      MOSTRAR ERROR "no se pueden usar dividendos negativos"
+    SI (dividendo - divisor) < 0 ENTONCES
+      resultado = 0
+    SINO
+      resultado = division_entera_recursiva(dividendo - divisor, divisor) + 1
+FIN
+
+#INICIO potencia_recursiva(base, exponente)
+  ENTRADA: base, exponente
+
+  #PROCESO
+    SI exponente no es entero ENTONCES
+      MOSTRAR ERROR "exponente debe ser un entero"
+    SI exponente < 0 ENTONCES
+      MOSTRAR ERROR "no soporta exponentes negativos"
+    SI exponente == 0 ENTONCES
+      resultado = 1
+    SINO
+      resultado = potencia_recursiva(base, exponente - 1) * base
+FIN
+
+#INICIO serie_collatz(n)
+  ENTRADA: n
+
+  #PROCESO
+    SI n no es entero ENTONCES
+      MOSTRAR ERROR "n debe ser un entero"
+    SI n <= 0 ENTONCES
+      MOSTRAR ERROR "n debe ser positivo (mayor a 0)"
+    SI n == 1 ENTONCES
+      MOSTRAR "END!"
+      resultado = 0
+    SINO
+      SI n es par ENTONCES
+        MOSTRAR n / 2
+        resultado = serie_collatz(n / 2)
+      SINO
+        MOSTRAR 3*n + 1
+        resultado = serie_collatz(3*n + 1)  
+FIN
+
+#INICIO aplanar_json(diccionario, clave_padre, separador)
+  ENTRADA: diccionario, clave_padre (opcional), separador (opcional)
+
+  #PROCESO
+    SI diccionario no es de tipo diccionario ENTONCES
+      MOSTRAR ERROR "Se esperaba un diccionario"
+
+    CREAR lista vacia "elementos"
+
+    PARA CADA (clave, valor) EN diccionario HACER
+      SI clave_padre no esta vacia ENTONCES
+        nueva_llave = clave_padre + separador + clave
+      SINO
+        nueva_llave = clave
+
+      SI valor es un diccionario ENTONCES
+        AGREGAR a "elementos" los pares obtenidos de
+          aplanar_json(valor, nueva_llave, separador)
+      SINO
+        AGREGAR a "elementos" el par (nueva_llave, valor)
+    FIN PARA
+
+    resultado = convertir "elementos" a diccionario  
+FIN
