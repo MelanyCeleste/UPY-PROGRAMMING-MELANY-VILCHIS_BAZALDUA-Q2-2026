@@ -1,0 +1,6 @@
+width= 600
+height=400
+bg_color=30,30,30
+space=0.40
+vertical_lines=10
+line_color=255,255,255
