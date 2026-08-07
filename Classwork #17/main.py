@@ -2,7 +2,7 @@ import pygame
 
 config = {}
 
-with open('Classwork #17 and 18/config.txt', 'r') as file:
+with open('Classwork #17/config.txt', 'r') as file:
     for line in file:
         parameter, value = line.strip().split('=')
         if ',' in value:
